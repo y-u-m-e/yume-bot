@@ -9,8 +9,8 @@ export const data = new SlashCommandBuilder()
   .setDescription('Check bot latency and API status');
 
 export async function execute(interaction, config) {
-  const sent = await interaction.reply({ content: '🏓 Pinging...', fetchReply: true });
-  const latency = sent.createdTimestamp - interaction.createdTimestamp;
+  const response = await interaction.reply({ content: '🏓 Pinging...', withResponse: true });
+  const latency = response.resource.message.createdTimestamp - interaction.createdTimestamp;
   const wsLatency = interaction.client.ws.ping;
 
   // Check API health
